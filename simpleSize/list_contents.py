@@ -66,3 +66,31 @@ if __name__ == "__main__":
 
     # Source: https://stackoverflow.com/questions/10695139/sort-a-list-of-tuples-by-2nd-item-integer-value#:~:text=Adding%20to%20Cheeken%27s%20answer%2C%20This%20is%20how%20you%20sort%20a%20list%20of%20tuples%20by%20the%202nd%20item%20in%20descending%20order.
     top_level_items = sorted(top_level_items, key=lambda x: x[2], reverse=True)
+
+    # Create displayed table in console
+    df = pd.DataFrame(data=top_level_items, columns=('File', 'Type', 'Size'))
+    df.index += 1
+
+    # Display and exit if user didn't specify unit
+    if args.unit is None:
+        print(df)
+        sys.exit(0)
+
+    # Display in user-specified unit
+    unit = args.unit
+    if unit == 'gib':
+        divisor = KIBIBYTE * KIBIBYTE * KIBIBYTE
+    elif unit == 'mib':
+        divisor = KIBIBYTE * KIBIBYTE
+    elif unit == 'kib':
+        divisor = KIBIBYTE
+    elif unit == 'gb':
+        divisor = KILOBYTE * KILOBYTE * KILOBYTE
+    elif unit == 'mb':
+        divisor = KILOBYTE * KILOBYTE
+    else:  # kb
+        divisor = KILOBYTE
+
+    df['Size'] = df['Size'].div(divisor).round(1)
+    print(f"Size unit: {unit}")
+    print(df)
