@@ -24,7 +24,7 @@ python list_contents.py ~/sample/folder
 ```
 You can also specify the unit for the file size. Choices include `gib`, `mib`, `kib`, `gb`, `mb`, `kb`. If not specified, file size is displayed in *bytes*.
 ```bash
-python list_contents.py ~/projects/mac_related -u kib
+python list_contents.py ~/sample/folder -u kib
 
 Size unit: kib
          File    Type     Size
