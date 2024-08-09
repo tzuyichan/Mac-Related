@@ -26,6 +26,29 @@ def get_content_size(start_path='.'):
 
 if __name__ == "__main__":
 
+    # Parse user-input arguments
+    description = "This program displays the size of top-level files in the specified directory."
+    parser = argparse.ArgumentParser(description=description)
+
+    parser.add_argument('root_path',
+                        type=str,
+                        metavar='DIR_PATH',
+                        help="Full path to the target directory")
+    parser.add_argument('-u',
+                        dest='unit',
+                        type=str,
+                        choices=('gib', 'mib', 'kib', 'gb', 'mb', 'kb'),
+                        metavar='UNIT',
+                        help="preferred unit for displaying file size")
+    args = parser.parse_args()
+
+    # Check path validity
+    if not os.path.exists(args.root_path):
+        print("Invalid path provided!")
+        print(f"Could not find \"{args.root_path}\"")
+        print("Exiting program...")
+        sys.exit(1)
+
     # Get content size of all top-level items
     top_level_items = []
 
