@@ -11,7 +11,8 @@
 ```
 
 ## How to use?
-Run `list_contents.py` and provide the ***full path*** of the directory you want to inspect.
+Run `list_contents.py` and provide either the relative path or full path of the directory you want to inspect. The relative path is calculated from the current
+working directory the user is in.
 ```bash
 python list_contents.py ~/sample/folder
 
